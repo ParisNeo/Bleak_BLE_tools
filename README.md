@@ -54,13 +54,16 @@ python logger.py -a "AA:BB:CC:DD:EE:FF" "1234" "5678" -p "./accelerometer.csv" -
 
 It is important to note that the entry_format argument should be set according to the data format of the sensor and the file_header argument should match the format of the data in the entry_format argument.
 
-# Other examples
+## Other examples
 Log data from the accelerometer that sends data in format timestamp:uint16,accx:int32,accy:int32,accz:int32 through service (UUID: 0xABCD)  characteristic (UUID: 0xABCD) of a device with MAC address 12:34:56:78:90:AB and save the data to ./accelerometer.csv:
 ```bash
 python logger.py 12:34:56:78:90:AB 0xABCD 0xABCD  -p ./accelerometer.csv -H "timestamp, acc_x, acc_y, acc_z" -F "<Hiii"
 ```
 
-# Note
+## Note
 For some devices, the notification mode may not work. In this case, you can use the polling mode by adding -f to the request. This will force using the read method instead of notification.
 
+
+## Exeting the application
+To exit the application, you just need to press q.
 
