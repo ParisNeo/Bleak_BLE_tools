@@ -1,7 +1,7 @@
 # BLE Data Logger
 
 [![GitHub release](https://badgen.net/github/release/ParisNeo/Bleak_BLE_tools)](https://github.com/ParisNeo/Bleak_BLE_tools/releases)
-[![GitHub license](https://badgen.net/github/license/ParisNeo/Bleak_BLE_tools)](https://github.com/ParisNeo/Bleak_BLE_tools/blob/master/LICENSE)(https://chrome.google.com/webstore/detail/Bleak_BLE_tools/fhbjgbiflinjbdggehcddcbncdddomop)
+[![GitHub license](https://badgen.net/github/license/ParisNeo/Bleak_BLE_tools)](https://github.com/ParisNeo/Bleak_BLE_tools/blob/master/LICENSE)
 
 File: logger.py
 
