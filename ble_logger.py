@@ -140,7 +140,7 @@ be used for logging.
     parser.add_argument("service_uuid", help="UUID of the service that the characteristic belongs to")
     parser.add_argument("characteristic_uuid", help="UUID of the characteristic to log data from")
     parser.add_argument("-p", "--path", help="Path to the csv file to be created",default="./log.csv")
-    parser.add_argument("-t", "--timeout", help="Timeout in seconds", type=float, default=5.0)
+    parser.add_argument("-t", "--timeout", help="Timeout in seconds", type=float, default=15.0)
     parser.add_argument("-f", "--force_read", help="Force using read instead of notify", action="store_true")
     parser.add_argument("-H", "--file_header", help="The header of the csv file, defaults to 'timestamp, acc_x, acc_y, acc_z'", default="timestamp, acc_x, acc_y, acc_z")
     parser.add_argument("-F", "--entry_format", help="The format of the data, defaults to '<Hiii' (little endian, short, 3 ints)", default="<Hiii")
