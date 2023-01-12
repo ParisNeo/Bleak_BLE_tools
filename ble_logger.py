@@ -128,7 +128,14 @@ async def log_data(
         print(e)
         
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser()
+    parser = argparse.ArgumentParser(description="""
+Logs data from a specific characteristic of a BLE device with a given address,
+service UUID and characteristic UUID, and timeout. If the characteristic has a
+notification property, the data is logged continuously until the user press 'q'
+If the characteristic is read-only, the data is read and printed once, then
+disconnected. If the characteristic is write-only, the user is told that it can't
+be used for logging.    
+    """)
     parser.add_argument("mac_address", help="MAC address of the device")
     parser.add_argument("service_uuid", help="UUID of the service that the characteristic belongs to")
     parser.add_argument("characteristic_uuid", help="UUID of the characteristic to log data from")
@@ -137,14 +144,6 @@ if __name__ == "__main__":
     parser.add_argument("-f", "--force_read", help="Force using read instead of notify", action="store_true")
     parser.add_argument("-H", "--file_header", help="The header of the csv file, defaults to 'timestamp, acc_x, acc_y, acc_z'", default="timestamp, acc_x, acc_y, acc_z")
     parser.add_argument("-F", "--entry_format", help="The format of the data, defaults to '<Hiii' (little endian, short, 3 ints)", default="<Hiii")
-    parser.add_help("""
-Logs data from a specific characteristic of a BLE device with a given address,
-service UUID and characteristic UUID, and timeout. If the characteristic has a
-notification property, the data is logged continuously until the user press 'q'
-If the characteristic is read-only, the data is read and printed once, then
-disconnected. If the characteristic is write-only, the user is told that it can't
-be used for logging.    
-    """)
     args = parser.parse_args()
 
     print(f"Searching for :\n    Mac address:{args.mac_address}\n    Service UUID:{args.service_uuid}\n    Characteristic uuid:{args.characteristic_uuid}")
