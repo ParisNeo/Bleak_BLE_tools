@@ -61,7 +61,7 @@ python logger.py 12:34:56:78:90:AB 0xABCD 0xABCD  -p ./accelerometer.csv -H "tim
 ```
 
 ## Note
-`For some devices, the notification mode may not work. In this case, you can use the polling mode by adding -f to the request. This will force using the read method instead of notification.`{color:red}
+`For some devices, the notification mode may not work. In this case, you can use the polling mode by adding -f to the request. This will force using the read method instead of notification.`
 
 
 ## Exeting the application
