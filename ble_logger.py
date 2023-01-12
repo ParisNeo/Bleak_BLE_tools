@@ -1,5 +1,5 @@
 """
-file: ble_logger.py
+file: logger.py
 author: Saifeddine ALOUI(ParisNeo) + ChatGPT
 description: This script uses the Bleak library to discover and connect to a BLE device with a given MAC address,
 then logs data from a specific service and characteristic of the device. The data is logged continuously if the characteristic has
@@ -10,6 +10,7 @@ import asyncio
 import argparse
 from bleak import discover, BleakClient
 import struct 
+import keyboard
 
 def parse_data(data, entry_format='<Hiii'):
     """
@@ -82,17 +83,20 @@ async def log_data(
                         if "notify" in characteristic.properties:
                             if force_read:
                                 nb_received = 1
-                                print("Logging in polling mode.\nTo exit press Ctrl + C")
+                                print("Logging in polling mode.\nTo exit press 'q'")
                                 while True:
                                     data = await client.read_gatt_char(characteristic)
                                     parsed = parse_data(data, entry_format)
-                                    f.write(parsed)
+                                    f.write(parsed+"\n")
                                     print(f"Logged {nb_received} entries", end='\r')
                                     nb_received += 1
+                                    if keyboard.is_pressed('q'):  # if key 'q' is pressed 
+                                        break  # finishing the loop
                             else:
                                 nb_received = 1
                                 def data_received(_, data):
-                                    f.write(parse_data(data))
+                                    parsed = parse_data(data, entry_format)
+                                    f.write(parsed+"\n")
                                     print(f"Logged {nb_received} entries", end='\r')
                                     nb_received += 1
 
