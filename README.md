@@ -1,6 +1,8 @@
 # BLE Data Logger
-File: logger.py
-Author: Saifeddine ALOUI + ChatGPT
+
+## File: logger.py
+## Author: Saifeddine ALOUI + ChatGPT
+## Description
 This script uses the Bleak library to connect to a BLE device and logs data from a specific characteristic of the device. The logged data is saved to a CSV file. The script supports two modes:
 
 Notification mode: The script subscribes to notifications from the characteristic and logs the data as it is received. The logging can be stopped by pressing 'q'.
