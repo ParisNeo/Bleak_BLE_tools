@@ -38,8 +38,29 @@ The script can be run from the command line by providing the following arguments
 ```bash
 python logger.py <mac_address> <service_uuid> <characteristic_uuid> [-p <file_path>] [-t <timeout>] [-f] [-e <entry_format>] [-h <file_header>]
 ```
-# Examples
+
+## Customization explaining
+The end user can control the file header and the data format through the call arguments of the script logger.py. The arguments file_header and entry_format allow the user to specify the format of the data and the header of the csv file respectively.
+
+For example, if the user wants to log data from a temperature sensor that sends data in the format of a float in degrees Celsius, the user can set file_header to "timestamp, temperature (C)" and entry_format to '<Hf' (little endian, short, float). Assuming a service uuid of 1234 and characteristic 5678, the user can then run the script with these arguments:
+```bash
+python logger.py -a "AA:BB:CC:DD:EE:FF" "1234" "5678" -p "./temperature.csv" -H "timestamp, temperature (C)" -F '<Hf'
+```
+Another example, if the user wants to log data from an accelerometer sensor that sends data in the format of 3 integers representing the X, Y, and Z axis values respectively, the user can set file_header to "timestamp, acc_x, acc_y, acc_z" and entry_format to '<Hiii' (little endian, short, 3 ints). The user can then run the script with these arguments:
+
+```bash
+python logger.py -a "AA:BB:CC:DD:EE:FF" "1234" "5678" -p "./accelerometer.csv" -H "timestamp, acc_x, acc_y, acc_z" -F '<Hiii'
+```
+
+It is important to note that the entry_format argument should be set according to the data format of the sensor and the file_header argument should match the format of the data in the entry_format argument.
+
+# Other examples
 Log data from the accelerometer that sends data in format timestamp:uint16,accx:int32,accy:int32,accz:int32 through service (UUID: 0xABCD)  characteristic (UUID: 0xABCD) of a device with MAC address 12:34:56:78:90:AB and save the data to ./accelerometer.csv:
 ```bash
 python logger.py 12:34:56:78:90:AB 0xABCD 0xABCD  -p ./accelerometer.csv -H "timestamp, acc_x, acc_y, acc_z" -F "<Hiii"
 ```
+
+# Note
+For some devices, the notification mode may not work. In this case, you can use the polling mode by adding -f to the request. This will force using the read method instead of notification.
+
+
