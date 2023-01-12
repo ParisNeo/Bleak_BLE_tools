@@ -33,7 +33,7 @@ The script can be run from the command line by providing the following arguments
 python logger.py <mac_address> <service_uuid> <characteristic_uuid> [-p <file_path>] [-t <timeout>] [-f] [-e <entry_format>] [-h <file_header>]
 ```
 # Examples
-Log data from the accelerometer characteristic (UUID: 0xABCD) of a device with MAC address 12:34:56:78:90:AB and save the data to ./accelerometer.csv:
+Log data from the accelerometer that sends data in format timestamp:uint16,accx:int32,accy:int32,accz:int32 through service (UUID: 0xABCD)  characteristic (UUID: 0xABCD) of a device with MAC address 12:34:56:78:90:AB and save the data to ./accelerometer.csv:
 ```bash
-python logger.py 12:34:56
+python logger.py 12:34:56:78:90:AB 0xABCD 0xABCD  -p ./accelerometer.csv -H "timestamp, acc_x, acc_y, acc_z" -F "<Hiii"
 ```
